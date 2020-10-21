@@ -5,11 +5,18 @@
         <h1 class="font-weight-light">Book Workspace</h1>
       </v-col>
     </v-row>
+    <app-workspace-request></app-workspace-request>
   </v-container>
 </template>
 
 <script>
-export default {};
+import WorkspaceRequest from "@/components/Workspaces/WorkspaceRequest";
+
+export default {
+  components: {
+    "app-workspace-request": WorkspaceRequest,
+  },
+};
 </script>
 
 <style>

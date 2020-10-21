@@ -15,7 +15,7 @@
           </v-card-text>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
-            <div class="subtitle-2 mt-2">
+            <div class="subtitle-2">
               <span class="font-weight-regular button"
                 >118 Members • 5 Events</span
               >
