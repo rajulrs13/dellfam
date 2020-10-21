@@ -25,42 +25,38 @@
               <v-icon v-else small color="warning">mdi-clock-outline</v-icon>
             </template>
             <template v-slot:item.info="{ item }">
-              <!-- <v-icon small color="primary" @click="openDialogBox(item)">mdi-information-outline</v-icon> -->
-              <v-icon small color="primary">mdi-information-outline</v-icon>
+              <v-icon small color="primary" @click="openDialogBox(item)"
+                >mdi-information-outline</v-icon
+              >
+              <!-- <v-icon small color="primary">mdi-information-outline</v-icon> -->
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
-    <!-- <app-recognition-dialog
-      :recognitionData="openedItem"
+    <app-request-dialog
+      :requestData="openedItem"
       :visible="showDialog"
-      @close="showDialog=false"
-    ></app-recognition-dialog> -->
+      @close="showDialog = false"
+    ></app-request-dialog>
   </v-container>
 </template>
 
 <script>
-// import RecognitionDialogBox from "../shared/RecognitionDialogBox";
+import RequestDialogBox from "@/components/Workspaces/RequestDialogBox";
 export default {
-  //   components: {
-  //     "app-recognition-dialog": RecognitionDialogBox,
-  //   },
+  components: {
+    "app-request-dialog": RequestDialogBox,
+  },
   data() {
     return {
       openedItem: {
-        title: "",
+        request_date: "",
         description: "",
-        date: "",
-        nominee: "",
-        nominee_name: "",
-        nominator: "",
-        nominator_name: "",
-        type: "",
-        points: 0,
-        level: "",
-        icon: "",
-        color: "",
+        selected_office: "",
+        selected_date: "",
+        start_time: "",
+        end_time: "",
         status: 0,
       },
       showDialog: false,
@@ -105,8 +101,8 @@ export default {
     };
   },
   methods: {
-    openDialogBox(recognition_detail) {
-      this.openedItem = recognition_detail;
+    openDialogBox(request_detail) {
+      this.openedItem = request_detail;
       this.showDialog = true;
     },
   },
