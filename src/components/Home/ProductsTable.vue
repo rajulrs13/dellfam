@@ -21,8 +21,8 @@
             :search="search"
           >
             <template v-slot:item.contact="{ item }">
-              <v-icon left color="blue darken-3" @click="email">mdi-microsoft-outlook</v-icon>
-              <v-icon left color="purple" @click="LoginSSH()">mdi-microsoft-teams</v-icon>
+              <v-icon left color="blue darken-3">mdi-microsoft-outlook</v-icon>
+              <v-icon left color="purple">mdi-microsoft-teams</v-icon>
             </template>
             <template v-slot:item.info="{ item }">
               <v-icon small color="primary" @click="openDialogBox(item)">mdi-information-outline</v-icon>
