@@ -26,43 +26,36 @@
               <v-icon left color="blue">mdi-skype-business</v-icon>
             </template>
             <template v-slot:item.info="{ item }">
-              <!-- <v-icon small color="primary" @click="openDialogBox(item)">mdi-information-outline</v-icon> -->
-              <v-icon small color="primary">mdi-information-outline</v-icon>
+              <v-icon small color="primary" @click="openDialogBox(item)">mdi-information-outline</v-icon>
+              <!-- <v-icon small color="primary">mdi-information-outline</v-icon> -->
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
-    <app-recognition-dialog
-      :recognitionData="openedItem"
+    <app-product-dialog-box
+      :productData="openedItem"
       :visible="showDialog"
       @close="showDialog = false"
-    ></app-recognition-dialog>
+    ></app-product-dialog-box>
   </v-container>
 </template>
 
 <script>
-// import RecognitionDialogBox from "../shared/RecognitionDialogBox";
+import ProductDialogBox from "./ProductDialogBox";
 export default {
-  //   components: {
-  //     "app-recognition-dialog": RecognitionDialogBox,
-  //   },
+    components: {
+      "app-product-dialog-box": ProductDialogBox,
+    },
   data() {
     return {
       openedItem: {
-        title: "",
+        product: "",
         description: "",
-        date: "",
-        nominee: "",
-        nominee_name: "",
-        nominator: "",
-        nominator_name: "",
-        type: "",
-        points: 0,
-        level: "",
-        icon: "",
-        color: "",
-        status: 0,
+        product_owner: "",
+        manager: "",
+        location: "",
+        email: "",
       },
       showDialog: false,
       headers: [
@@ -81,6 +74,7 @@ export default {
           manager: "Radhika Maramganti",
           location: "Hyderabad",
           email: "",
+          description: "",
         },
         {
           product: "Self Service",
@@ -88,13 +82,14 @@ export default {
           manager: "Radhika Maramganti",
           location: "Ireland",
           email: "",
+          description: "",
         },
       ],
     };
   },
   methods: {
-    openDialogBox(recognition_detail) {
-      this.openedItem = recognition_detail;
+    openDialogBox(product_details) {
+      this.openedItem = product_details;
       this.showDialog = true;
     },
   },
