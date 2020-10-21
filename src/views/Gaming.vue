@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import MyGroups from "@/components/Gaming/GamesGallery.vue";
+import GamesGallery from "@/components/Gaming/GamesGallery.vue";
 export default {
   components: {
-    "app-my-groups": MyGroups,
+    "app-my-groups": GamesGallery,
   },
 };
 </script>
