@@ -1,24 +1,11 @@
 <template>
   <v-container fluid>
     <v-row>
-      <!-- <v-col>
-        <div>
-          <iframe
-            src="https://www.atlistmaps.com/map/3be36dfc-0ea3-48c4-a520-5e09e8aed3bf?share=true"
-            allow="geolocation"
-            width="100%"
-            height="450px"
-            frameborder="0"
-            scrolling="no"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </v-col> -->
       <v-col cols="12" sm="12">
         <v-tabs
           v-model="tab"
           background-color="transparent"
-          color="accent"
+          color="primary"
           centered
           icons-and-text
           show-arrows

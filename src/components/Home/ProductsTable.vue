@@ -3,7 +3,23 @@
     <v-row>
       <v-col class="text-center">
         <v-card>
-          <v-data-table :headers="headers" :items="products" :loading="loading">
+          <v-card-title>
+            List of Products
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="products"
+            :loading="loading"
+            :search="search"
+          >
             <template v-slot:item.contact="{ item }">
               <v-icon left color="blue darken-3">mdi-microsoft-outlook</v-icon>
               <v-icon left color="purple">mdi-microsoft-teams</v-icon>
@@ -57,6 +73,7 @@ export default {
         { text: "Location", value: "location" },
         { text: "Contact", value: "contact", align: "center" },
       ],
+      search: "",
       products: [
         {
           product: "CICD",
