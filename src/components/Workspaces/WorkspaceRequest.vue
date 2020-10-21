@@ -21,12 +21,10 @@
                     <v-icon size="36" color="white">mdi-map-marker</v-icon>
                   </v-avatar>
                 </v-col>
-                <!-- <v-col cols="1"></v-col> -->
+
                 <v-col cols="10">
                   <v-autocomplete
                     :items="office_locations"
-                    item-text="name"
-                    return-object
                     color="white"
                     label="Select Office Location"
                     v-model="selected_office"
@@ -53,6 +51,8 @@
                     full-width
                     :landscape="$vuetify.breakpoint.smAndUp"
                     class="mt-4"
+                    :show-current="false"
+                    :min="todays_date"
                   ></v-date-picker>
                 </v-col>
               </v-row>
@@ -67,22 +67,22 @@
                     <v-row justify="space-around" align="center">
                       <v-col style="width: 290px; flex: 0 1 auto">
                         <h2 class="font-weight-light primary--text">
-                          Start: {{ start }}
+                          Start: {{ start_time }}
                         </h2>
                         <v-time-picker
                           no-title
-                          v-model="start"
-                          :max="end"
+                          v-model="start_time"
+                          :max="end_time"
                         ></v-time-picker>
                       </v-col>
                       <v-col style="width: 290px; flex: 0 1 auto">
                         <h2 class="font-weight-light primary--text">
-                          End: {{ end }}
+                          End: {{ end_time }}
                         </h2>
                         <v-time-picker
                           no-title
-                          v-model="end"
-                          :min="start"
+                          v-model="end_time"
+                          :min="start_time"
                         ></v-time-picker>
                       </v-col>
                     </v-row>
@@ -123,20 +123,28 @@
           <v-btn :disabled="step === 1 || loading" text @click="step--"
             >Back</v-btn
           >
-          <!-- <v-btn
-            v-if="step !== 4"
-            :disabled="step === 2 || step === 3 || loading"
+          <v-btn
+            v-if="step === 1"
+            :disabled="selected_office == ''"
             color="primary"
             depressed
             @click="step1()"
             >Next</v-btn
-          > -->
+          >
           <v-btn
-            v-if="step !== 4"
-            :disabled="loading"
+            v-else-if="step === 2"
+            :disabled="selected_date == ''"
             color="primary"
             depressed
-            @click="step1()"
+            @click="step2()"
+            >Next</v-btn
+          >
+          <v-btn
+            v-else-if="step === 3"
+            :disabled="start_time == '' || end_time == ''"
+            color="primary"
+            depressed
+            @click="step3()"
             >Next</v-btn
           >
           <v-btn
@@ -144,7 +152,7 @@
             color="primary"
             depressed
             @click="sendAward()"
-            :disabled="loading"
+            :disabled="description == ''"
             >Submit Request</v-btn
           >
         </v-card-actions>
@@ -191,16 +199,26 @@ export default {
       ],
       selected_date: "",
       dialog: false,
-      start: null,
-      end: null,
+      start_time: "",
+      end_time: "",
       step: 1,
-      selected_office: {},
-      title: "",
+      selected_office: "",
       description: "",
       requestData: {},
     };
   },
   computed: {
+    todays_date() {
+      let d = new Date();
+      let month = "" + (d.getMonth() + 1);
+      let day = "" + d.getDate();
+      let year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
     colleagues() {
       return this.$store.getters.colleagues;
     },
@@ -229,45 +247,43 @@ export default {
   methods: {
     cancelAward() {
       this.dialog = false;
-      this.selected_office = {};
+      this.selected_office = "";
+      this.selected_date = "";
+      this.start_time = "";
+      this.end_time = "";
+      this.description = "";
       this.step = 1;
     },
     step1() {
       this.step++;
-      this.requestData.nominator = this.userId;
-      this.requestData.nominator_name = this.username;
-      this.requestData.nominator_email = this.email;
-      this.requestData.nominee = this.selected_office.user_id;
-      this.requestData.nominee_name = this.selected_office.name;
-      this.requestData.nominee_email = this.selected_office.email;
-      this.requestData.manager = this.manager;
+      this.requestData.selected_office = this.selected_office;
     },
-    step2(award_level) {
+    step2() {
       this.step++;
-      this.requestData.level = award_level.name;
-      this.requestData.icon = award_level.icon;
-      this.requestData.color = award_level.color;
+      this.requestData.selected_date = this.selected_date;
     },
-    step3(award_type) {
+    step3() {
       this.step++;
-      this.requestData.type = award_type.name;
-      this.requestData.points = award_type.points;
+      this.requestData.start_time = this.start_time;
+      this.requestData.end_time = this.end_time;
     },
     sendAward() {
-      this.requestData.title = this.title;
       this.requestData.description = this.description;
+      this.requestData.request_date = this.todays_date;
+      this.requestData.status = 0;
+
       console.log(this.requestData);
       var self = this;
-    //   this.$store
-    //     .dispatch("recognizeSomeone", self.requestData)
-    //     .then(() => {
-    //       self.dialog = false;
-    //     })
-    //     .catch(() => {
-    //       console.log("Please try again.");
-    //     });
-    self.dialog = false;
-
+      //   this.$store
+      //     .dispatch("recognizeSomeone", self.requestData)
+      //     .then(() => {
+      //       self.dialog = false;
+      //     })
+      //     .catch(() => {
+      //       console.log("Please try again.");
+      //     });
+      this.cancelAward();
+      //   self.dialog = false;
     },
   },
 };
