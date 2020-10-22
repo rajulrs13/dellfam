@@ -24,6 +24,7 @@
                 small
                 right
                 top
+                :to="'game/' + game.id"
               >
                 <v-icon>mdi-play</v-icon>
               </v-btn>

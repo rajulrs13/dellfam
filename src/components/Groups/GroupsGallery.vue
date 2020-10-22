@@ -3,7 +3,7 @@
     <v-row>
       <v-col v-for="(group, i) in my_groups" :key="i" cols="12" sm="4">
         <!-- <v-card class="mx-auto" max-width="374" @click="openDialogBox(ad)"> -->
-        <v-card class="mx-auto" max-width="374">
+        <v-card class="mx-auto" max-width="374" :to="'group/' + group.id">
           <v-img height="200" :src="group.img"></v-img>
 
           <v-card-text>
