@@ -2,7 +2,6 @@
   <v-container fluid>
     <v-row>
       <v-col v-for="(group, i) in my_groups" :key="i" cols="12" sm="4">
-        <!-- <v-card class="mx-auto" max-width="374" @click="openDialogBox(ad)"> -->
         <v-card class="mx-auto" max-width="374" :to="'group/' + group.id">
           <v-img height="200" :src="group.img"></v-img>
 
@@ -24,24 +23,11 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row>
-          <v-col>
-            <app-campaign-dialog-box
-              :campaignData="openedItem"
-              :visible="showDialog"
-              @close="showDialog=false"
-            ></app-campaign-dialog-box>
-          </v-col>
-        </v-row> -->
   </v-container>
 </template>
 
 <script>
-// import CampaignDialogBox from "./CampaignDialogBox";
 export default {
-  //   components: {
-  //     "app-campaign-dialog-box": CampaignDialogBox,
-  //   },
   data() {
     return {
       openedItem: {

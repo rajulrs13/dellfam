@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="fill-height">
-    <v-row>
-      <v-col>Group Page</v-col>
+    <v-row align="center" justify="center">
+      <v-col class="text-center">Group Page</v-col>
     </v-row>
   </v-container>
 </template>
