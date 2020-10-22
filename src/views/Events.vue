@@ -68,7 +68,7 @@
 <script>
 import MyEventsGallery from "@/components/Events/MyEventsGallery";
 import PublicEventsGallery from "@/components/Events/PublicEventsGallery";
-import EventCalendar from "@/components/EventCalendar";
+import EventCalendar from "@/components/Events/EventCalendar";
 export default {
   components: {
     "app-my-events": MyEventsGallery,

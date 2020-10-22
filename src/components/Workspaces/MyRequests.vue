@@ -10,7 +10,7 @@
         <v-card>
           <v-data-table
             :headers="headers"
-            :items="workspace_requests"
+            :items="my_workspace_requests"
             :loading="loading"
             sort-by="request_date"
             sort-desc
@@ -69,35 +69,6 @@ export default {
         { text: "End Time", value: "end_time", sortable: false },
         { text: "Status", value: "status", sortable: false, align: "center" },
       ],
-      workspace_requests: [
-        {
-          description: "sadas",
-          end_time: "17:25",
-          request_date: "2020-10-21",
-          selected_date: "2020-10-30",
-          selected_office: "Dell-6 Bangalore",
-          start_time: "02:21",
-          status: 0,
-        },
-        {
-          description: "sadas",
-          end_time: "17:25",
-          request_date: "2020-10-20",
-          selected_date: "2020-10-30",
-          selected_office: "Dell-6 Bangalore",
-          start_time: "02:21",
-          status: 1,
-        },
-        {
-          description: "sadas",
-          end_time: "17:25",
-          request_date: "2020-10-19",
-          selected_date: "2020-10-30",
-          selected_office: "Dell-6 Bangalore",
-          start_time: "02:21",
-          status: 2,
-        },
-      ],
     };
   },
   methods: {
@@ -107,8 +78,8 @@ export default {
     },
   },
   computed: {
-    recognitions() {
-      return this.$store.getters.recognitions;
+    my_workspace_requests() {
+      return this.$store.getters.my_workspace_requests;
     },
     loading() {
       return this.$store.getters.loading;

@@ -219,21 +219,6 @@ export default {
 
       return [year, month, day].join("-");
     },
-    colleagues() {
-      return this.$store.getters.colleagues;
-    },
-    userId() {
-      return this.$store.getters.user_id;
-    },
-    username() {
-      return this.$store.getters.username;
-    },
-    email() {
-      return this.$store.getters.email;
-    },
-    manager() {
-      return this.$store.getters.manager;
-    },
     loading() {
       return this.$store.getters.loading;
     },
@@ -274,16 +259,8 @@ export default {
 
       console.log(this.requestData);
       var self = this;
-      //   this.$store
-      //     .dispatch("recognizeSomeone", self.requestData)
-      //     .then(() => {
-      //       self.dialog = false;
-      //     })
-      //     .catch(() => {
-      //       console.log("Please try again.");
-      //     });
+      this.$store.commit("submitRequest", this.requestData);
       this.cancelAward();
-      //   self.dialog = false;
     },
   },
 };

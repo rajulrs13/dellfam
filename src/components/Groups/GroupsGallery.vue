@@ -1,23 +1,23 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col v-for="index in 5" :key="index" cols="12" sm="4">
+      <v-col v-for="(group, i) in my_groups" :key="i" cols="12" sm="4">
         <!-- <v-card class="mx-auto" max-width="374" @click="openDialogBox(ad)"> -->
         <v-card class="mx-auto" max-width="374">
-          <v-img
-            height="200"
-            :src="`https://picsum.photos/500/300?image=${index * 5 + 10}`"
-          ></v-img>
+          <v-img height="200" :src="group.img"></v-img>
 
           <v-card-text>
-            <div><span class="text-button">Title</span></div>
-            <div class="text-truncate">Description</div>
+            <div>
+              <span class="text-button">{{ group.title }}</span>
+            </div>
+            <div class="text-truncate">{{ group.description }}</div>
           </v-card-text>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
             <div class="subtitle-2">
               <span class="font-weight-regular button"
-                >118 Members • 5 Events</span
+                >{{ group.member_count }} Members •
+                {{ group.event_count }} Events</span
               >
             </div>
           </v-card-text>
@@ -33,7 +33,7 @@
             ></app-campaign-dialog-box>
           </v-col>
         </v-row> -->
-  </v-container>    
+  </v-container>
 </template>
 
 <script>
@@ -53,6 +53,7 @@ export default {
         achieved_points: 0,
         date: "",
       },
+
       showDialog: false,
     };
   },
@@ -63,8 +64,8 @@ export default {
     },
   },
   computed: {
-    campaigns() {
-      return this.$store.getters.campaigns;
+    my_groups() {
+      return this.$store.getters.my_groups;
     },
     loading() {
       return this.$store.getters.loading;

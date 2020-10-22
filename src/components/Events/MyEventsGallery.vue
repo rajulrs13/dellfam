@@ -13,24 +13,24 @@
         <v-sheet class="mx-auto">
           <v-slide-group v-model="model" center-active show-arrows>
             <v-slide-item
-              v-for="i in 10"
+              v-for="(event, i) in private_events"
               :key="i"
               v-slot:default="{ active, toggle }"
             >
               <v-card class="ma-4" height="300" width="200" @click="toggle">
-                <v-img
-                  height="200"
-                  width="200"
-                  :src="`https://picsum.photos/500/300?image=${i * 5 + 10}`"
-                ></v-img>
+                <v-img height="200" width="200" :src="event.img"></v-img>
                 <v-card-text>
-                  <div class="text-button">Title</div>
-                  <div class="text-truncate">20/07/20 • 20:30 IST</div>
+                  <div class="text-button">{{ event.title }}</div>
+                  <div class="text-truncate">
+                    {{ event.date }} • {{ event.time }} IST
+                  </div>
                   <div>
                     <v-icon size="15" color="green" left
                       >mdi-account-multiple</v-icon
                     >
-                    <span class="font-weight-regular success--text">100 </span>
+                    <span class="font-weight-regular success--text"
+                      >{{ event.members_attending }}
+                    </span>
                     <span class="font-weight-regular success--text">RSVPs</span>
                   </div>
                 </v-card-text>
@@ -51,8 +51,8 @@ export default {
     };
   },
   computed: {
-    products() {
-      return this.$store.getters.products;
+    private_events() {
+      return this.$store.getters.private_events;
     },
     loading() {
       return this.$store.getters.loading;

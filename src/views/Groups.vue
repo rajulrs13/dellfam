@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import GroupSearchBox from "@/components/GroupSearchBox.vue";
-import MyGroups from "@/components/MyGroups.vue";
+import GroupSearchBox from "@/components/Groups/GroupSearchBox.vue";
+import MyGroups from "@/components/Groups/MyGroups.vue";
 export default {
   components: {
     "app-group-search-box": GroupSearchBox,
