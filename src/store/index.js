@@ -89,6 +89,7 @@ export default new Vuex.Store({
     ],
     my_groups: [
       {
+        id: 1,
         img: "https://picsum.photos/500/300?image=15",
         title: "Group 1",
         description: "Description",
@@ -96,6 +97,7 @@ export default new Vuex.Store({
         event_count: "5",
       },
       {
+        id: 2,
         img: "https://picsum.photos/500/300?image=25",
         title: "Group 2",
         description: "Description 2",
@@ -137,30 +139,35 @@ export default new Vuex.Store({
     ],
     games: [
       {
+        id: 1,
         img: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
         description: "Description 1",
         title: "Title 1",
         waiting_time: "2",
       },
       {
+        id: 2,
         img: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
         description: "Description 2",
         title: "Title 2",
         waiting_time: "3",
       },
       {
+        id: 3,
         img: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
         description: "Description 3",
         title: "Title 3",
         waiting_time: "3",
       },
       {
+        id: 4,
         img: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
         description: "Description 4",
         title: "Title 4",
         waiting_time: "5",
       },
       {
+        id: 5,
         img: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
         description: "Description 5",
         title: "Title 5",
