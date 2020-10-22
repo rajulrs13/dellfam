@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Loader from "@/components/Loader.vue";
+import Loader from "@/components/Gaming/Loader.vue";
 export default {
   data() {
     return {
